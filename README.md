@@ -7,4 +7,4 @@
 3. Hilt
 4. Coroutines - Flow
 
-<img alt="ImageGalleryDemo" src="https://github.com/aleh-god/fourth-task-maps-learn/blob/master/FourthTaskDemo.gif" />
+<img alt="ImageGalleryDemo" src="https://github.com/aleh-god/android-school-fourth-task/blob/master/FourthTaskDemo.gif" />

@@ -19,8 +19,8 @@ class MapsViewModel @Inject constructor(
     private val getAllGeographicDataUseCase: GetAllGeographicDataUseCase,
     private val stringHelper: StringHelper
 ) : ViewModel() {
-    private val _uiState: MutableStateFlow<UiState?> = MutableStateFlow(null)
-    val uiState: StateFlow<UiState?> = _uiState
+    private val _uiState: MutableStateFlow<UiState> = MutableStateFlow(UiState())
+    val uiState: StateFlow<UiState> = _uiState
 
     private val _uiEvent  = MutableSharedFlow<String>(0)
     val uiEvent: SharedFlow<String> = _uiEvent
@@ -34,7 +34,7 @@ class MapsViewModel @Inject constructor(
             getAllGeographicDataUseCase()
                 .onStart {
                     Log.i(TAG, "viewModelScope.launch: .onStart")
-                    UiState(
+                    _uiState.value = UiState(
                         isFetchingData = true
                     )
                 }
@@ -48,7 +48,6 @@ class MapsViewModel @Inject constructor(
                 }
                 .collect {
                     Log.i(TAG, "viewModelScope.launch: .collect = ${it.size}")
-                    _uiState.value = null
                     _uiState.value = UiState(
                         data = it
                     )

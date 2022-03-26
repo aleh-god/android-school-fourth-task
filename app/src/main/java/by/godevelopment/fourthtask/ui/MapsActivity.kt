@@ -56,7 +56,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         lifecycleScope.launchWhenStarted {
             mapsViewModel.uiState
                 .collect { uiState ->
-                    uiState?.let {
                         if (uiState.isFetchingData)
                             Toast.makeText(
                                 applicationContext,
@@ -79,7 +78,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                             )
                         }
                         map.moveCamera(CameraUpdateFactory.newLatLngZoom(homeLatLng, zoomLevel))
-                    }
                 }
         }
     }
